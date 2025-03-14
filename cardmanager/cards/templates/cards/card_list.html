@@ -1,0 +1,30 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>Your Sports Cards</h1>
+  <a href="{% url 'card_create' %}">Add New Card</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Thumbnail</th>
+        <th>Player Name</th>
+        <th>Card Brand</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for card in cards %}
+      <tr>
+        <td><img src="{{ card.front_image.url }}" alt="Front Image" style="width: 100px; height: auto;"></td>
+        <td>{{ card.player_name }}</td>
+        <td>{{ card.card_brand }}</td>
+        <td>
+          <a href="{% url 'card_detail' card.pk %}">View</a>
+          <a href="{% url 'card_edit' card.pk %}">Edit</a>
+          <a href="{% url 'card_delete' card.pk %}">Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

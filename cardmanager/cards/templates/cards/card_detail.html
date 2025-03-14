@@ -1,0 +1,29 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>{{ card.player_name }} - {{ card.card_brand }}</h1>
+  <p>Team: {{ card.team }}</p>
+  <p>Card Number: {{ card.card_number }}</p>
+  <p>For Sale: {{ card.for_sale }}</p>
+  <div>
+    <label for="front_image">Front Image:</label><br>
+    <img src="{{ card.front_image.url }}" alt="Front Image" class="thumbnail" />
+  </div>
+  <div>
+    <label for="back_image">Back Image:</label><br>
+    <img src="{{ card.back_image.url }}" alt="Back Image" class="thumbnail" />
+  </div>
+  <a href="{% url 'card_edit' card.pk %}">Edit</a>
+  <a href="{% url 'card_delete' card.pk %}">Delete</a>
+  <a href="{% url 'card_list' %}">Back to list</a>
+  <style>
+    .thumbnail {
+      width: 100px;
+      height: auto;
+      transition: transform 0.2s;
+    }
+    .thumbnail:hover {
+      transform: scale(3);
+    }
+  </style>
+{% endblock %}
